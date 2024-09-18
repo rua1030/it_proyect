@@ -54,9 +54,8 @@ export default function SupplyManagement() {
 
   // Filter supplies
   const filteredSupplies = supplies.filter(
-    (supply) =>
-      supply.brand.toLowerCase().includes(filter.toLowerCase()) ||
-      supply.serial.toLowerCase().includes(filter.toLowerCase())
+    (supply) => supply.brand.toLowerCase().includes(filter.toLowerCase())
+      || supply.serial.toLowerCase().includes(filter.toLowerCase()),
   );
 
   // Calculate indices for pagination
@@ -64,7 +63,7 @@ export default function SupplyManagement() {
   const indexOfFirstSupply = indexOfLastSupply - suppliesPerPage;
   const currentSupplies = filteredSupplies.slice(
     indexOfFirstSupply,
-    indexOfLastSupply
+    indexOfLastSupply,
   );
 
   // Change page
@@ -82,7 +81,9 @@ export default function SupplyManagement() {
           className="max-w-sm"
         />
         <Button onClick={() => confirmadd()}>
-          <Plus className="mr-2 h-4 w-4" /> Add Computers
+          <Plus className="mr-2 h-4 w-4" />
+          {' '}
+          Add Computers
         </Button>
       </div>
       <Table>
@@ -177,20 +178,18 @@ export default function SupplyManagement() {
         )}
 
         {/* Botón de la última página */}
-        {currentPage <
-          Math.ceil(filteredSupplies.length / suppliesPerPage) - 1 && (
+        {currentPage
+          < Math.ceil(filteredSupplies.length / suppliesPerPage) - 1 && (
           <>
-            {currentPage <
-              Math.ceil(filteredSupplies.length / suppliesPerPage) - 2 && (
+            {currentPage
+              < Math.ceil(filteredSupplies.length / suppliesPerPage) - 2 && (
               <span className="mx-1">...</span>
             )}
             <Button
-              onClick={() =>
-                changePage(Math.ceil(filteredSupplies.length / suppliesPerPage))
-              }
+              onClick={() => changePage(Math.ceil(filteredSupplies.length / suppliesPerPage))}
               variant={
-                currentPage ===
-                Math.ceil(filteredSupplies.length / suppliesPerPage)
+                currentPage
+                === Math.ceil(filteredSupplies.length / suppliesPerPage)
                   ? 'default'
                   : 'outline'
               }
@@ -216,7 +215,8 @@ export default function SupplyManagement() {
             <DialogTitle>Confirm deletion</DialogTitle>
             <DialogDescription>
               Are you sure you want to delete the supply with serial "
-              {supplyToDelete?.serial}"? This action cannot be undone.
+              {supplyToDelete?.serial}
+              "? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -235,7 +235,7 @@ export default function SupplyManagement() {
           <DialogDescription>
             <CardForm />
           </DialogDescription>
-          <DialogFooter></DialogFooter>
+          <DialogFooter />
         </DialogContent>
       </Dialog>
     </div>

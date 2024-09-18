@@ -1,6 +1,8 @@
 'use client';
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, {
+  createContext, useState, useContext, ReactNode,
+} from 'react';
 
 const initialPeripherals = [
   {
@@ -66,11 +68,11 @@ interface SupplyContextProps {
 
 const SupplyContext = createContext<SupplyContextProps | undefined>(undefined);
 
-export const SupplyProviderPeripherals = ({
+export function SupplyProviderPeripherals({
   children,
 }: {
   children: ReactNode;
-}) => {
+}) {
   const [peripherals, setPeripherals] = useState(initialPeripherals);
   const [filter, setFilter] = useState('');
   const [currentPage] = useState(1);
@@ -103,8 +105,8 @@ export const SupplyProviderPeripherals = ({
     if (peripheralToDelete) {
       setPeripherals(
         peripherals.filter(
-          (peripheral) => peripheral.id !== peripheralToDelete.id
-        )
+          (peripheral) => peripheral.id !== peripheralToDelete.id,
+        ),
       );
       setDeleteModal(false);
       setPeripheralToDelete(null);
@@ -114,8 +116,7 @@ export const SupplyProviderPeripherals = ({
   // Simulate status change
   const changeStatus = (id: number, newStatus: string) => {
     setPeripherals(
-      peripherals.map((peripheral) =>
-        peripheral.id === id ? { ...peripheral, status: newStatus } : peripheral)
+      peripherals.map((peripheral) => (peripheral.id === id ? { ...peripheral, status: newStatus } : peripheral)),
     );
   };
   return (
@@ -145,7 +146,7 @@ export const SupplyProviderPeripherals = ({
       {children}
     </SupplyContext.Provider>
   );
-};
+}
 export const useSupplyContext = () => {
   const context = useContext(SupplyContext);
   if (!context) {

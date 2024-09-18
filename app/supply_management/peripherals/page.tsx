@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -52,16 +53,15 @@ export default function PeripheralManagement() {
   const [suppliesPerPage] = useState(5);
 
   const filteredPeripherals = peripherals.filter(
-    (peripheral) =>
-      peripheral.brand.toLowerCase().includes(filter.toLowerCase())
-    || peripheral.name.toLowerCase().includes(filter.toLowerCase())
+    (peripheral) => peripheral.brand.toLowerCase().includes(filter.toLowerCase())
+    || peripheral.name.toLowerCase().includes(filter.toLowerCase()),
   );
 
   const indexOfLastSupply = currentPage * suppliesPerPage;
   const indexOfFirstSupply = indexOfLastSupply - suppliesPerPage;
   const currentSupplies = filteredPeripherals.slice(
     indexOfFirstSupply,
-    indexOfLastSupply
+    indexOfLastSupply,
   );
 
   // Change page
@@ -81,7 +81,9 @@ export default function PeripheralManagement() {
           className="max-w-sm"
         />
         <Button onClick={() => confirmadd()}>
-          <Plus className="mr-2 h-4 w-4" /> Add Peripheral
+          <Plus className="mr-2 h-4 w-4" />
+          {' '}
+          Add Peripheral
         </Button>
       </div>
       <Table>
@@ -169,30 +171,28 @@ export default function PeripheralManagement() {
         </Button>
 
         {/* Botón de la siguiente página */}
-        {currentPage <
-          Math.ceil(filteredPeripherals.length / suppliesPerPage) && (
+        {currentPage
+          < Math.ceil(filteredPeripherals.length / suppliesPerPage) && (
           <Button onClick={() => changePage(currentPage + 1)} variant="outline">
             {currentPage + 1}
           </Button>
         )}
 
         {/* Botón de la última página */}
-        {currentPage <
-          Math.ceil(filteredPeripherals.length / suppliesPerPage) - 1 && (
+        {currentPage
+          < Math.ceil(filteredPeripherals.length / suppliesPerPage) - 1 && (
           <>
-            {currentPage <
-              Math.ceil(filteredPeripherals.length / suppliesPerPage) - 2 && (
+            {currentPage
+              < Math.ceil(filteredPeripherals.length / suppliesPerPage) - 2 && (
               <span className="mx-1">...</span>
             )}
             <Button
-              onClick={() =>
-                changePage(
-                  Math.ceil(filteredPeripherals.length / suppliesPerPage)
-                )
-              }
+              onClick={() => changePage(
+                Math.ceil(filteredPeripherals.length / suppliesPerPage),
+              )}
               variant={
-                currentPage ===
-                Math.ceil(filteredPeripherals.length / suppliesPerPage)
+                currentPage
+                === Math.ceil(filteredPeripherals.length / suppliesPerPage)
                   ? 'default'
                   : 'outline'
               }
@@ -205,8 +205,8 @@ export default function PeripheralManagement() {
         <Button
           onClick={() => changePage(currentPage + 1)}
           disabled={
-            currentPage ===
-            Math.ceil(filteredPeripherals.length / suppliesPerPage)
+            currentPage
+            === Math.ceil(filteredPeripherals.length / suppliesPerPage)
           }
           className="ml-2"
         >
@@ -219,7 +219,8 @@ export default function PeripheralManagement() {
             <DialogTitle>Confirm deletion</DialogTitle>
             <DialogDescription>
               Are you sure you want to delete the peripheral "
-              {peripheralToDelete?.name}"? This action cannot be undone.
+              {peripheralToDelete?.name}
+              "? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -238,7 +239,7 @@ export default function PeripheralManagement() {
           <DialogDescription>
             <CardForm />
           </DialogDescription>
-          <DialogFooter></DialogFooter>
+          <DialogFooter />
         </DialogContent>
       </Dialog>
     </div>

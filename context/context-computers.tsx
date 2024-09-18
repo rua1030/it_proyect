@@ -1,13 +1,25 @@
 'use client';
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, {
+  createContext, useState, useContext, ReactNode,
+} from 'react';
 
 const initialSupplies = [
-  { id: 1, brand: 'Dell', serial: 'DELL123456', status: 'Available' },
-  { id: 2, brand: 'HP', serial: 'HP789012', status: 'In use' },
-  { id: 3, brand: 'Lenovo', serial: 'LEN345678', status: 'In storage' },
-  { id: 4, brand: 'Apple', serial: 'APP901234', status: 'Available' },
-  { id: 5, brand: 'Asus', serial: 'ASUS567890', status: 'Stolen' },
+  {
+    id: 1, brand: 'Dell', serial: 'DELL123456', status: 'Available',
+  },
+  {
+    id: 2, brand: 'HP', serial: 'HP789012', status: 'In use',
+  },
+  {
+    id: 3, brand: 'Lenovo', serial: 'LEN345678', status: 'In storage',
+  },
+  {
+    id: 4, brand: 'Apple', serial: 'APP901234', status: 'Available',
+  },
+  {
+    id: 5, brand: 'Asus', serial: 'ASUS567890', status: 'Stolen',
+  },
 ];
 
 const supplyStatuses = ['Available', 'In storage', 'In use', 'Stolen'];
@@ -37,11 +49,11 @@ interface SupplyContextProps {
 
 const SupplyContext = createContext<SupplyContextProps | undefined>(undefined);
 
-export const SupplyProviderComputer = ({
+export function SupplyProviderComputer({
   children,
 }: {
   children: ReactNode;
-}) => {
+}) {
   const [supplies, setSupplies] = useState(initialSupplies);
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -84,9 +96,7 @@ export const SupplyProviderComputer = ({
   // Simulate status change
   const changeStatus = (id: number, newStatus: string) => {
     setSupplies(
-      supplies.map((supply) =>
-        supply.id === id ? { ...supply, status: newStatus } : supply
-      )
+      supplies.map((supply) => (supply.id === id ? { ...supply, status: newStatus } : supply)),
     );
   };
 
@@ -118,7 +128,7 @@ export const SupplyProviderComputer = ({
       {children}
     </SupplyContext.Provider>
   );
-};
+}
 
 export const useSupplyContext = () => {
   const context = useContext(SupplyContext);

@@ -52,10 +52,9 @@ export default function AdditionalSupplyManagement() {
   const [suppliesPerPage] = useState(5);
 
   const filteredSupplies = supplies.filter(
-    (supply) =>
-      supply.brand.toLowerCase().includes(filter.toLowerCase()) ||
-      supply.serial.toLowerCase().includes(filter.toLowerCase()) ||
-      supply.type.toLowerCase().includes(filter.toLowerCase())
+    (supply) => supply.brand.toLowerCase().includes(filter.toLowerCase())
+      || supply.serial.toLowerCase().includes(filter.toLowerCase())
+      || supply.type.toLowerCase().includes(filter.toLowerCase()),
   );
 
   // Calculate indices for pagination
@@ -63,7 +62,7 @@ export default function AdditionalSupplyManagement() {
   const indexOfFirstSupply = indexOfLastSupply - suppliesPerPage;
   const currentSupplies = filteredSupplies.slice(
     indexOfFirstSupply,
-    indexOfLastSupply
+    indexOfLastSupply,
   );
 
   // Change page
@@ -81,7 +80,9 @@ export default function AdditionalSupplyManagement() {
           className="max-w-sm"
         />
         <Button onClick={() => confirmAdd()}>
-          <Plus className="mr-2 h-4 w-4" /> Add displays
+          <Plus className="mr-2 h-4 w-4" />
+          {' '}
+          Add displays
         </Button>
       </div>
       <Table>
@@ -172,20 +173,18 @@ export default function AdditionalSupplyManagement() {
         )}
 
         {/* Botón de la última página */}
-        {currentPage <
-          Math.ceil(filteredSupplies.length / suppliesPerPage) - 1 && (
+        {currentPage
+          < Math.ceil(filteredSupplies.length / suppliesPerPage) - 1 && (
           <>
-            {currentPage <
-              Math.ceil(filteredSupplies.length / suppliesPerPage) - 2 && (
+            {currentPage
+              < Math.ceil(filteredSupplies.length / suppliesPerPage) - 2 && (
               <span className="mx-1">...</span>
             )}
             <Button
-              onClick={() =>
-                changePage(Math.ceil(filteredSupplies.length / suppliesPerPage))
-              }
+              onClick={() => changePage(Math.ceil(filteredSupplies.length / suppliesPerPage))}
               variant={
-                currentPage ===
-                Math.ceil(filteredSupplies.length / suppliesPerPage)
+                currentPage
+                === Math.ceil(filteredSupplies.length / suppliesPerPage)
                   ? 'default'
                   : 'outline'
               }
@@ -226,7 +225,7 @@ export default function AdditionalSupplyManagement() {
       <Dialog open={addModal} onOpenChange={setAddModal}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle></DialogTitle>
+            <DialogTitle />
           </DialogHeader>
           <CardForm />
         </DialogContent>

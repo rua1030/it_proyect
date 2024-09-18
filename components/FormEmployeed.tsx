@@ -29,7 +29,7 @@ const FormEmployeed: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Campo para el nombre */}
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="name" className="">
             Name:
           </label>
           <input

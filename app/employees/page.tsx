@@ -26,7 +26,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Plus, Edit, Trash2, Info } from 'lucide-react';
+import {
+  Plus, Edit, Trash2, Info,
+} from 'lucide-react';
 import CardForm from '@/components/card-form';
 import { useSupplyContext } from '@/context/context-employees';
 
@@ -177,28 +179,26 @@ export default function EmployeeManagement() {
         <Button variant="default" className="mx-1">
           {currentPage}
         </Button>
-        {currentPage <
-          Math.ceil(filteredEmployees.length / employeesPerPage) && (
+        {currentPage
+          < Math.ceil(filteredEmployees.length / employeesPerPage) && (
           <Button onClick={() => changePage(currentPage + 1)} variant="outline">
             {currentPage + 1}
           </Button>
         )}
-        {currentPage <
-          Math.ceil(filteredEmployees.length / employeesPerPage) - 1 && (
+        {currentPage
+          < Math.ceil(filteredEmployees.length / employeesPerPage) - 1 && (
           <>
-            {currentPage <
-              Math.ceil(filteredEmployees.length / employeesPerPage) - 2 && (
+            {currentPage
+              < Math.ceil(filteredEmployees.length / employeesPerPage) - 2 && (
               <span className="mx-1">...</span>
             )}
             <Button
-              onClick={() =>
-                changePage(
-                  Math.ceil(filteredEmployees.length / employeesPerPage)
-                )
-              }
+              onClick={() => changePage(
+                Math.ceil(filteredEmployees.length / employeesPerPage),
+              )}
               variant={
-                currentPage ===
-                Math.ceil(filteredEmployees.length / employeesPerPage)
+                currentPage
+                === Math.ceil(filteredEmployees.length / employeesPerPage)
                   ? 'default'
                   : 'outline'
               }
@@ -211,8 +211,8 @@ export default function EmployeeManagement() {
         <Button
           onClick={() => changePage(currentPage + 1)}
           disabled={
-            currentPage ===
-            Math.ceil(filteredEmployees.length / employeesPerPage)
+            currentPage
+            === Math.ceil(filteredEmployees.length / employeesPerPage)
           }
           className="ml-2"
         >
@@ -224,8 +224,9 @@ export default function EmployeeManagement() {
           <DialogHeader>
             <DialogTitle>Confirm deletion</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete the employee "
-              {employeeToDelete?.name}"? This action cannot be undone.
+              Are you sure you want to delete the employee 
+              {employeeToDelete?.name}
+              ? This action cannot be undone".
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -244,7 +245,7 @@ export default function EmployeeManagement() {
           <DialogDescription>
             <CardForm />
           </DialogDescription>
-          <DialogFooter></DialogFooter>
+          <DialogFooter />
         </DialogContent>
       </Dialog>
     </div>

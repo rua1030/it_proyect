@@ -1,6 +1,8 @@
 'use client';
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, {
+  createContext, useState, useContext, ReactNode,
+} from 'react';
 
 // Simulated supply data
 const initialSupplies = [
@@ -383,11 +385,11 @@ interface SupplyContextProps {
 
 const SupplyContext = createContext<SupplyContextProps | undefined>(undefined);
 
-export const SupplyProviderDevices = ({
+export function SupplyProviderDevices({
   children,
 }: {
   children: ReactNode;
-}) => {
+}) {
   const [supplies, setSupplies] = useState(initialSupplies);
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -431,9 +433,7 @@ export const SupplyProviderDevices = ({
   // Simulate status change
   const changeStatus = (id: number, newStatus: string) => {
     setSupplies(
-      supplies.map((supply) =>
-        supply.id === id ? { ...supply, status: newStatus } : supply
-      )
+      supplies.map((supply) => (supply.id === id ? { ...supply, status: newStatus } : supply)),
     );
   };
 
@@ -464,7 +464,7 @@ export const SupplyProviderDevices = ({
       {children}
     </SupplyContext.Provider>
   );
-};
+}
 
 export const useSupplyContext = () => {
   const context = useContext(SupplyContext);

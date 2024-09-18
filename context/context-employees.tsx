@@ -1,6 +1,8 @@
 'use client';
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, {
+  createContext, useState, useContext, ReactNode,
+} from 'react';
 
 interface Employee {
   id: number;
@@ -182,11 +184,11 @@ interface SupplyContextProps {
 }
 const SupplyContext = createContext<SupplyContextProps | undefined>(undefined);
 
-export const SupplyProviderEmployees = ({
+export function SupplyProviderEmployees({
   children,
 }: {
   children: ReactNode;
-}) => {
+}) {
   const [status] = useState(employeeStatuses);
   const [statusSystems] = useState(operatingSystems);
   const [employees, setEmployees] = useState(initialEmployees);
@@ -203,17 +205,15 @@ export const SupplyProviderEmployees = ({
     console.log('Add employee');
   };
 
-  // Simulate editing an employee
   const editEmployee = (id: number) => {
     console.log('Edit employee', id);
   };
 
-  // Open confirmation modal for deletion
   const confirmDelete = (employee: any) => {
     setEmployeeToDelete(employee);
     setDeleteModal(true);
   };
-  // Open confirmation modal for add
+
   const modalAdd = () => {
     setAddModal(true);
   };
@@ -223,54 +223,43 @@ export const SupplyProviderEmployees = ({
     setAddModal(false);
   };
 
-  // Delete employee
   const deleteEmployee = () => {
     if (employeeToDelete) {
       setEmployees(
-        employees.filter((employee) => employee.id !== employeeToDelete.id)
+        employees.filter((employee) => employee.id !== employeeToDelete.id),
       );
       setDeleteModal(false);
       setEmployeeToDelete(null);
     }
   };
 
-  // Simulate status change
   const changeStatus = (id: number, newStatus: string) => {
     setEmployees(
-      employees.map((employee) =>
-        employee.id === id ? { ...employee, status: newStatus } : employee
-      )
+      employees.map((employee) => (employee.id === id ? { ...employee, status: newStatus } : employee)),
     );
   };
 
-  // Simulate operating system change
   const changeOS = (id: number, newOS: string) => {
     setEmployees(
-      employees.map((employee) =>
-        employee.id === id ? { ...employee, operatingSystem: newOS } : employee
-      )
+      employees.map((employee) => (employee.id === id ? { ...employee, operatingSystem: newOS } : employee)),
     );
   };
 
-  // Filter employees
   const filteredEmployees = employees.filter(
-    (employee) =>
-      employee.name.toLowerCase().includes(filter.toLowerCase()) ||
-      employee.email.toLowerCase().includes(filter.toLowerCase()) ||
-      employee.idNumber.includes(filter) ||
-      employee.position.toLowerCase().includes(filter.toLowerCase()) ||
-      employee.operatingSystem.toLowerCase().includes(filter.toLowerCase())
+    (employee) => employee.name.toLowerCase().includes(filter.toLowerCase())
+      || employee.email.toLowerCase().includes(filter.toLowerCase())
+      || employee.idNumber.includes(filter)
+      || employee.position.toLowerCase().includes(filter.toLowerCase())
+      || employee.operatingSystem.toLowerCase().includes(filter.toLowerCase()),
   );
 
-  // Calculate indices for pagination
   const indexOfLastEmployee = currentPage * employeesPerPage;
   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
   const currentEmployees = filteredEmployees.slice(
     indexOfFirstEmployee,
-    indexOfLastEmployee
+    indexOfLastEmployee,
   );
 
-  // Change page
   const changePage = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
@@ -305,7 +294,7 @@ export const SupplyProviderEmployees = ({
       {children}
     </SupplyContext.Provider>
   );
-};
+}
 export const useSupplyContext = () => {
   const context = useContext(SupplyContext);
   if (!context) {

@@ -35,7 +35,7 @@ export default function LoginWithImage() {
           style={{
             backgroundImage: "url('/aba_tech_logo.jpeg?height=600&width=400')",
           }}
-        ></div>
+        />
         <Card className="w-full md:w-1/2 border-none shadow-none">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">

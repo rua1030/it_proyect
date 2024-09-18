@@ -7,7 +7,6 @@ import {
   LayoutDashboard,
   Users,
   Monitor,
-  Keyboard,
   Settings,
   LogOut,
   Menu,
@@ -94,8 +93,10 @@ export default function DashboardLayout() {
               <Menu className="h-6 w-6" />
               <span className="sr-only">Open sidebar</span>
             </Button>
-            <div className="text-xl font-semibold text-gray-800"></div>
-            <div className="w-6 md:w-0"></div> {/* Spacer for alignment */}
+            <div className="text-xl font-semibold text-gray-800" />
+            <div className="w-6 md:w-0" />
+            {' '}
+            {/* Spacer for alignment */}
           </div>
         </header>
       </div>
