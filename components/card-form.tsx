@@ -1,11 +1,23 @@
-'use client'
+'use client';
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface IFormInput {
   name: string;
@@ -16,16 +28,22 @@ interface IFormInput {
 }
 
 export default function CardForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = data => {
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
   };
 
   return (
     <Card className="">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center">Add employee</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center">
+          Add employee
+        </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Campo para el nombre */}
@@ -37,7 +55,9 @@ export default function CardForm() {
             {...register('name', { required: 'Name is required' })}
             className={`form-control ${errors.name ? 'is-invalid' : ''}`}
           />
-          {errors.name && <div className="text-danger">{errors.name.message}</div>}
+          {errors.name && (
+            <div className="text-danger">{errors.name.message}</div>
+          )}
         </div>
 
         {/* Campo para el correo electrónico */}
@@ -47,16 +67,18 @@ export default function CardForm() {
             id="email"
             type="email"
             placeholder="example@correo.com"
-            {...register('email', { 
+            {...register('email', {
               required: 'E-mail is required',
               pattern: {
                 value: /^\S+@\S+$/i,
-                message: 'Invalid e-mail format'
-              }
+                message: 'Invalid e-mail format',
+              },
             })}
             className={`form-control ${errors.email ? 'is-invalid' : ''}`}
           />
-          {errors.email && <div className="text-danger">{errors.email.message}</div>}
+          {errors.email && (
+            <div className="text-danger">{errors.email.message}</div>
+          )}
         </div>
 
         {/* Campo para el número de identificación */}
@@ -65,10 +87,14 @@ export default function CardForm() {
           <Input
             id="idNumber"
             placeholder="Enter your ID number"
-            {...register('idNumber', { required: 'Identification number is required' })}
+            {...register('idNumber', {
+              required: 'Identification number is required',
+            })}
             className={`form-control ${errors.idNumber ? 'is-invalid' : ''}`}
           />
-          {errors.idNumber && <div className="text-danger">{errors.idNumber.message}</div>}
+          {errors.idNumber && (
+            <div className="text-danger">{errors.idNumber.message}</div>
+          )}
         </div>
 
         {/* Campo para la posición */}
@@ -80,7 +106,9 @@ export default function CardForm() {
             {...register('position', { required: 'Position is required' })}
             className={`form-control ${errors.position ? 'is-invalid' : ''}`}
           />
-          {errors.position && <div className="text-danger">{errors.position.message}</div>}
+          {errors.position && (
+            <div className="text-danger">{errors.position.message}</div>
+          )}
         </div>
 
         {/* Campo para el sistema operativo */}
@@ -88,7 +116,9 @@ export default function CardForm() {
           <Label htmlFor="operatingSystem">Operating System</Label>
           <Select
             id="operatingSystem"
-            {...register('operatingSystem', { required: 'Operating system is required' })}
+            {...register('operatingSystem', {
+              required: 'Operating system is required',
+            })}
             className={`form-select ${errors.operatingSystem ? 'is-invalid' : ''}`}
           >
             <SelectTrigger>
@@ -100,11 +130,19 @@ export default function CardForm() {
               <SelectItem value="linux">Linux</SelectItem>
             </SelectContent>
           </Select>
-          {errors.operatingSystem && <div className="text-danger">{errors.operatingSystem.message}</div>}
+          {errors.operatingSystem && (
+            <div className="text-danger">{errors.operatingSystem.message}</div>
+          )}
         </div>
       </CardContent>
       <CardFooter>
-        <Button type="submit" className="w-full" onClick={handleSubmit(onSubmit)}>Send</Button>
+        <Button
+          type="submit"
+          className="w-full"
+          onClick={handleSubmit(onSubmit)}
+        >
+          Send
+        </Button>
       </CardFooter>
     </Card>
   );

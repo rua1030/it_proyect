@@ -1,37 +1,25 @@
-/**
-
-* @see https://v0.dev/t/nQrP4Ig7Jjr
-**/
-import {
-  TooltipProvider,
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from "@/components/ui/tooltip";
-import Link from "next/link";
+import Link from 'next/link';
 import {
   Breadcrumb,
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
-} from "@/components/ui/breadcrumb";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/breadcrumb';
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Table,
   TableHeader,
@@ -39,8 +27,8 @@ import {
   TableHead,
   TableBody,
   TableCell,
-} from "@/components/ui/table";
-import { Progress } from "@/components/ui/progress";
+} from '@/components/ui/table';
+import { Progress } from '@/components/ui/progress';
 
 export default function dashboard() {
   return (
@@ -51,7 +39,7 @@ export default function dashboard() {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="#" prefetch={false}>
+                  <Link href="/dashboard" prefetch={false}>
                     Dashboard
                   </Link>
                 </BreadcrumbLink>
@@ -282,7 +270,6 @@ function FilePenIcon(props) {
     </svg>
   );
 }
-
 
 function PackageIcon(props) {
   return (

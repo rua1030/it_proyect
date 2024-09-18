@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -10,7 +10,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
   Dialog,
   DialogContent,
@@ -18,21 +18,20 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Plus, Edit, Trash2, Info } from "lucide-react";
-import CardForm from "@/components/card-form";
-import { useSupplyContext } from "@/context/context-employees";
+} from '@/components/ui/select';
+import { Plus, Edit, Trash2, Info } from 'lucide-react';
+import CardForm from '@/components/card-form';
+import { useSupplyContext } from '@/context/context-employees';
 
 export default function EmployeeManagement() {
   const {
-    employees,
     filter,
     editEmployee,
     deleteEmployee,
@@ -53,7 +52,7 @@ export default function EmployeeManagement() {
     currentPage,
     currentEmployees,
     filteredEmployees,
-    employeesPerPage
+    employeesPerPage,
   } = useSupplyContext();
 
   return (
@@ -68,7 +67,8 @@ export default function EmployeeManagement() {
           className="max-w-sm"
         />
         <Button onClick={() => modalAdd()}>
-          <Plus className="mr-2 h-4 w-4" /> Add Employee
+          <Plus className="mr-2 h-4 w-4" />
+          Add Employee
         </Button>
       </div>
       <Table>
@@ -152,60 +152,73 @@ export default function EmployeeManagement() {
         </TableBody>
       </Table>
       <div className="flex justify-center mt-4">
-  <Button onClick={() => changePage(currentPage - 1)} disabled={currentPage === 1}>
-    Previous
-  </Button>
-  {currentPage > 2 && (
-    <>
-      <Button onClick={() => changePage(1)} variant={currentPage === 1 ? "default" : "outline"}>
-        1
-      </Button>
-      {currentPage > 3 && <span className="mx-1">...</span>}
-    </>
-  )}
+        <Button
+          onClick={() => changePage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+        {currentPage > 2 && (
+          <>
+            <Button
+              onClick={() => changePage(1)}
+              variant={currentPage === 1 ? 'default' : 'outline'}
+            >
+              1
+            </Button>
+            {currentPage > 3 && <span className="mx-1">...</span>}
+          </>
+        )}
+        {currentPage > 1 && (
+          <Button onClick={() => changePage(currentPage - 1)} variant="outline">
+            {currentPage - 1}
+          </Button>
+        )}
+        <Button variant="default" className="mx-1">
+          {currentPage}
+        </Button>
+        {currentPage <
+          Math.ceil(filteredEmployees.length / employeesPerPage) && (
+          <Button onClick={() => changePage(currentPage + 1)} variant="outline">
+            {currentPage + 1}
+          </Button>
+        )}
+        {currentPage <
+          Math.ceil(filteredEmployees.length / employeesPerPage) - 1 && (
+          <>
+            {currentPage <
+              Math.ceil(filteredEmployees.length / employeesPerPage) - 2 && (
+              <span className="mx-1">...</span>
+            )}
+            <Button
+              onClick={() =>
+                changePage(
+                  Math.ceil(filteredEmployees.length / employeesPerPage)
+                )
+              }
+              variant={
+                currentPage ===
+                Math.ceil(filteredEmployees.length / employeesPerPage)
+                  ? 'default'
+                  : 'outline'
+              }
+            >
+              {Math.ceil(filteredEmployees.length / employeesPerPage)}
+            </Button>
+          </>
+        )}
 
-  {/* Botón de la página anterior */}
-  {currentPage > 1 && (
-    <Button onClick={() => changePage(currentPage - 1)} variant="outline">
-      {currentPage - 1}
-    </Button>
-  )}
-
-  {/* Botón de la página actual */}
-  <Button variant="default" className="mx-1">
-    {currentPage}
-  </Button>
-
-  {/* Botón de la siguiente página */}
-  {currentPage < Math.ceil(filteredEmployees.length / employeesPerPage) && (
-    <Button onClick={() => changePage(currentPage + 1)} variant="outline">
-      {currentPage + 1}
-    </Button>
-  )}
-
-  {/* Botón de la última página */}
-  {currentPage < Math.ceil(filteredEmployees.length / employeesPerPage) - 1 && (
-    <>
-      {currentPage < Math.ceil(filteredEmployees.length / employeesPerPage) - 2 && (
-        <span className="mx-1">...</span>
-      )}
-      <Button
-        onClick={() => changePage(Math.ceil(filteredEmployees.length / employeesPerPage))}
-        variant={currentPage === Math.ceil(filteredEmployees.length / employeesPerPage) ? "default" : "outline"}
-      >
-        {Math.ceil(filteredEmployees.length / employeesPerPage)}
-      </Button>
-    </>
-  )}
-
-  <Button
-    onClick={() => changePage(currentPage + 1)}
-    disabled={currentPage === Math.ceil(filteredEmployees.length / employeesPerPage)}
-    className="ml-2"
-  >
-    Next
-  </Button>
-</div>
+        <Button
+          onClick={() => changePage(currentPage + 1)}
+          disabled={
+            currentPage ===
+            Math.ceil(filteredEmployees.length / employeesPerPage)
+          }
+          className="ml-2"
+        >
+          Next
+        </Button>
+      </div>
       <Dialog open={deleteModal} onOpenChange={setDeleteModal}>
         <DialogContent>
           <DialogHeader>

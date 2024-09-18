@@ -1,46 +1,46 @@
-"use client";
+'use client';
 
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 const initialPeripherals = [
   {
     id: 1,
-    brand: "Logitech",
-    name: "MX Master 3",
+    brand: 'Logitech',
+    name: 'MX Master 3',
     quantity: 50,
-    status: "In stock",
+    status: 'In stock',
   },
   {
     id: 2,
-    brand: "Dell",
-    name: "P2419H Monitor",
+    brand: 'Dell',
+    name: 'P2419H Monitor',
     quantity: 30,
-    status: "Low stock",
+    status: 'Low stock',
   },
   {
     id: 3,
-    brand: "Corsair",
-    name: "K70 RGB Keyboard",
+    brand: 'Corsair',
+    name: 'K70 RGB Keyboard',
     quantity: 20,
-    status: "Out of stock",
+    status: 'Out of stock',
   },
   {
     id: 4,
-    brand: "Jabra",
-    name: "Evolve 75 Headset",
+    brand: 'Jabra',
+    name: 'Evolve 75 Headset',
     quantity: 40,
-    status: "In stock",
+    status: 'In stock',
   },
   {
     id: 5,
-    brand: "Microsoft",
-    name: "Surface Dock",
+    brand: 'Microsoft',
+    name: 'Surface Dock',
     quantity: 15,
-    status: "Low stock",
+    status: 'Low stock',
   },
 ];
 
-const peripheralStatuses = ["In stock", "Low stock", "Out of stock"];
+const peripheralStatuses = ['In stock', 'Low stock', 'Out of stock'];
 
 interface SupplyContextProps {
   statuses: typeof peripheralStatuses;
@@ -72,9 +72,8 @@ export const SupplyProviderPeripherals = ({
   children: ReactNode;
 }) => {
   const [peripherals, setPeripherals] = useState(initialPeripherals);
-  const [filter, setFilter] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [peripheralsPerPage] = useState(5);
+  const [filter, setFilter] = useState('');
+  const [currentPage] = useState(1);
   const [deleteModal, setDeleteModal] = useState(false);
   const [peripheralToDelete, setPeripheralToDelete] = useState(null);
   const [addModal, setaddModal] = useState(false);
@@ -82,12 +81,12 @@ export const SupplyProviderPeripherals = ({
   const [statuses] = useState(peripheralStatuses);
 
   const addPeripheral = () => {
-    console.log("Add peripheral");
+    console.log('Add peripheral');
   };
 
   // Simulate editing a peripheral
   const editPeripheral = (id: number) => {
-    console.log("Edit peripheral", id);
+    console.log('Edit peripheral', id);
   };
 
   // Open confirmation modal for deletion
@@ -116,8 +115,7 @@ export const SupplyProviderPeripherals = ({
   const changeStatus = (id: number, newStatus: string) => {
     setPeripherals(
       peripherals.map((peripheral) =>
-        peripheral.id === id ? { ...peripheral, status: newStatus } : peripheral
-      )
+        peripheral.id === id ? { ...peripheral, status: newStatus } : peripheral)
     );
   };
   return (
@@ -151,7 +149,7 @@ export const SupplyProviderPeripherals = ({
 export const useSupplyContext = () => {
   const context = useContext(SupplyContext);
   if (!context) {
-    throw new Error("useSupplyContext must be used within a SupplyProvider");
+    throw new Error('useSupplyContext must be used within a SupplyProvider');
   }
   return context;
 };

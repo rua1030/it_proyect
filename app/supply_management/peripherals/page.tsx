@@ -1,7 +1,7 @@
-'use client'
-import React, { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+'use client';
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from '@/components/ui/table';
 import {
   Dialog,
   DialogContent,
@@ -17,51 +17,46 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
+} from '@/components/ui/dialog';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Plus, Edit, Trash2 } from 'lucide-react'
-import CardForm from '@/components/card-form-p'
-import { useSupplyContext } from "@/context/context-peripherals";
+} from '@/components/ui/select';
+import { Plus, Edit, Trash2 } from 'lucide-react';
+import CardForm from '@/components/card-form-p';
+import { useSupplyContext } from '@/context/context-peripherals';
 
 export default function PeripheralManagement() {
-  
   const {
     statuses,
     peripherals,
-        filter,
-        addPeripheral,
-        editPeripheral,
-        deletePeripheral,
-        confirmDelete,
-        confirmadd,
-        changeStatus,
-        setFilter,
-        deleteModal,
-        setDeleteModal,
-        peripheralToDelete,
-        setPeripheralToDelete,
-        addModal,
-        setaddModal,
-        peripheralToadd,
-        setPeripheralToadd,
-  } = useSupplyContext()
+    filter,
+    editPeripheral,
+    deletePeripheral,
+    confirmDelete,
+    confirmadd,
+    changeStatus,
+    setFilter,
+    deleteModal,
+    setDeleteModal,
+    peripheralToDelete,
+    addModal,
+    setaddModal,
+  } = useSupplyContext();
   // Filter peripherals
 
   const [currentPage, setCurrentPage] = useState(1);
   const [suppliesPerPage] = useState(5);
 
-  const filteredPeripherals = peripherals.filter(peripheral =>
-    peripheral.brand.toLowerCase().includes(filter.toLowerCase()) ||
-    peripheral.name.toLowerCase().includes(filter.toLowerCase())
-  )
+  const filteredPeripherals = peripherals.filter(
+    (peripheral) =>
+      peripheral.brand.toLowerCase().includes(filter.toLowerCase())
+    || peripheral.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
-  // Calculate indices for pagination
   const indexOfLastSupply = currentPage * suppliesPerPage;
   const indexOfFirstSupply = indexOfLastSupply - suppliesPerPage;
   const currentSupplies = filteredPeripherals.slice(
@@ -70,12 +65,13 @@ export default function PeripheralManagement() {
   );
 
   // Change page
-  const changePage = (pageNumber:number) => setCurrentPage(pageNumber)
-
+  const changePage = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Supply Management / Peripheral</h1>
+      <h1 className="text-2xl font-bold mb-4">
+        Supply Management / Peripheral
+      </h1>
       <div className="flex justify-between items-center mb-4">
         <Input
           type="text"
@@ -122,10 +118,18 @@ export default function PeripheralManagement() {
                 </Select>
               </TableCell>
               <TableCell>
-                <Button variant="ghost" size="sm" onClick={() => editPeripheral(peripheral.id)}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => editPeripheral(peripheral.id)}
+                >
                   <Edit className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="sm" onClick={() => confirmDelete(peripheral)}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => confirmDelete(peripheral)}
+                >
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </TableCell>
@@ -134,84 +138,109 @@ export default function PeripheralManagement() {
         </TableBody>
       </Table>
       <div className="flex justify-center mt-4">
-  <Button onClick={() => changePage(currentPage - 1)} disabled={currentPage === 1}>
-    Previous
-  </Button>
-  {currentPage > 2 && (
-    <>
-      <Button onClick={() => changePage(1)} variant={currentPage === 1 ? "default" : "outline"}>
-        1
-      </Button>
-      {currentPage > 3 && <span className="mx-1">...</span>}
-    </>
-  )}
+        <Button
+          onClick={() => changePage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+        {currentPage > 2 && (
+          <>
+            <Button
+              onClick={() => changePage(1)}
+              variant={currentPage === 1 ? 'default' : 'outline'}
+            >
+              1
+            </Button>
+            {currentPage > 3 && <span className="mx-1">...</span>}
+          </>
+        )}
 
-  {/* Botón de la página anterior */}
-  {currentPage > 1 && (
-    <Button onClick={() => changePage(currentPage - 1)} variant="outline">
-      {currentPage - 1}
-    </Button>
-  )}
+        {/* Botón de la página anterior */}
+        {currentPage > 1 && (
+          <Button onClick={() => changePage(currentPage - 1)} variant="outline">
+            {currentPage - 1}
+          </Button>
+        )}
 
-  {/* Botón de la página actual */}
-  <Button variant="default" className="mx-1">
-    {currentPage}
-  </Button>
+        {/* Botón de la página actual */}
+        <Button variant="default" className="mx-1">
+          {currentPage}
+        </Button>
 
-  {/* Botón de la siguiente página */}
-  {currentPage < Math.ceil(filteredPeripherals.length / suppliesPerPage) && (
-    <Button onClick={() => changePage(currentPage + 1)} variant="outline">
-      {currentPage + 1}
-    </Button>
-  )}
+        {/* Botón de la siguiente página */}
+        {currentPage <
+          Math.ceil(filteredPeripherals.length / suppliesPerPage) && (
+          <Button onClick={() => changePage(currentPage + 1)} variant="outline">
+            {currentPage + 1}
+          </Button>
+        )}
 
-  {/* Botón de la última página */}
-  {currentPage < Math.ceil(filteredPeripherals.length / suppliesPerPage) - 1 && (
-    <>
-      {currentPage < Math.ceil(filteredPeripherals.length / suppliesPerPage) - 2 && (
-        <span className="mx-1">...</span>
-      )}
-      <Button
-        onClick={() => changePage(Math.ceil(filteredPeripherals.length / suppliesPerPage))}
-        variant={currentPage === Math.ceil(filteredPeripherals.length / suppliesPerPage) ? "default" : "outline"}
-      >
-        {Math.ceil(filteredPeripherals.length / suppliesPerPage)}
-      </Button>
-    </>
-  )}
+        {/* Botón de la última página */}
+        {currentPage <
+          Math.ceil(filteredPeripherals.length / suppliesPerPage) - 1 && (
+          <>
+            {currentPage <
+              Math.ceil(filteredPeripherals.length / suppliesPerPage) - 2 && (
+              <span className="mx-1">...</span>
+            )}
+            <Button
+              onClick={() =>
+                changePage(
+                  Math.ceil(filteredPeripherals.length / suppliesPerPage)
+                )
+              }
+              variant={
+                currentPage ===
+                Math.ceil(filteredPeripherals.length / suppliesPerPage)
+                  ? 'default'
+                  : 'outline'
+              }
+            >
+              {Math.ceil(filteredPeripherals.length / suppliesPerPage)}
+            </Button>
+          </>
+        )}
 
-  <Button
-    onClick={() => changePage(currentPage + 1)}
-    disabled={currentPage === Math.ceil(filteredPeripherals.length / suppliesPerPage)}
-    className="ml-2"
-  >
-    Next
-  </Button>
-</div>
+        <Button
+          onClick={() => changePage(currentPage + 1)}
+          disabled={
+            currentPage ===
+            Math.ceil(filteredPeripherals.length / suppliesPerPage)
+          }
+          className="ml-2"
+        >
+          Next
+        </Button>
+      </div>
       <Dialog open={deleteModal} onOpenChange={setDeleteModal}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Confirm deletion</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete the peripheral "{peripheralToDelete?.name}"?
-              This action cannot be undone.
+              Are you sure you want to delete the peripheral "
+              {peripheralToDelete?.name}"? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDeleteModal(false)}>Cancel</Button>
-            <Button variant="destructive" onClick={deletePeripheral}>Delete</Button>
+            <Button variant="outline" onClick={() => setDeleteModal(false)}>
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={deletePeripheral}>
+              Delete
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
       <Dialog open={addModal} onOpenChange={setaddModal}>
-      <DialogContent>
+        <DialogContent>
           <DialogDescription>
-            <CardForm/>
+            <CardForm />
           </DialogDescription>
           <DialogFooter></DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }

@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 const initialSupplies = [
-  { id: 1, brand: "Dell", serial: "DELL123456", status: "Available" },
-  { id: 2, brand: "HP", serial: "HP789012", status: "In use" },
-  { id: 3, brand: "Lenovo", serial: "LEN345678", status: "In storage" },
-  { id: 4, brand: "Apple", serial: "APP901234", status: "Available" },
-  { id: 5, brand: "Asus", serial: "ASUS567890", status: "Stolen" },
+  { id: 1, brand: 'Dell', serial: 'DELL123456', status: 'Available' },
+  { id: 2, brand: 'HP', serial: 'HP789012', status: 'In use' },
+  { id: 3, brand: 'Lenovo', serial: 'LEN345678', status: 'In storage' },
+  { id: 4, brand: 'Apple', serial: 'APP901234', status: 'Available' },
+  { id: 5, brand: 'Asus', serial: 'ASUS567890', status: 'Stolen' },
 ];
 
-const supplyStatuses = ["Available", "In storage", "In use", "Stolen"];
+const supplyStatuses = ['Available', 'In storage', 'In use', 'Stolen'];
 
 interface SupplyContextProps {
   status: typeof supplyStatuses;
@@ -43,7 +43,7 @@ export const SupplyProviderComputer = ({
   children: ReactNode;
 }) => {
   const [supplies, setSupplies] = useState(initialSupplies);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [suppliesPerPage] = useState(5);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -54,12 +54,12 @@ export const SupplyProviderComputer = ({
 
   // Simulate adding a supply
   const addSupply = () => {
-    console.log("Add supply");
+    console.log('Add supply');
   };
 
   // Simulate editing a supply
   const editSupply = (id: number) => {
-    console.log("Edit supply", id);
+    console.log('Edit supply', id);
   };
 
   // Open confirmation modal for deletion
@@ -123,7 +123,7 @@ export const SupplyProviderComputer = ({
 export const useSupplyContext = () => {
   const context = useContext(SupplyContext);
   if (!context) {
-    throw new Error("useSupplyContext must be used within a SupplyProvider");
+    throw new Error('useSupplyContext must be used within a SupplyProvider');
   }
   return context;
 };

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -10,7 +10,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
   Dialog,
   DialogContent,
@@ -18,17 +18,17 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Plus, Edit, Trash2 } from "lucide-react";
-import CardForm from "@/components/card-form-d";
-import { useSupplyContext } from "@/context/context-display";
+} from '@/components/ui/select';
+import { Plus, Edit, Trash2 } from 'lucide-react';
+import CardForm from '@/components/card-form-d';
+import { useSupplyContext } from '@/context/context-display';
 
 export default function AdditionalSupplyManagement() {
   const {
@@ -109,7 +109,7 @@ export default function AdditionalSupplyManagement() {
                     <SelectValue placeholder="Select status" />
                   </SelectTrigger>
                   <SelectContent>
-                    {["In use", "In maintenance", "Available"].map((status) => (
+                    {['In use', 'In maintenance', 'Available'].map((status) => (
                       <SelectItem key={status} value={status}>
                         {status}
                       </SelectItem>
@@ -144,7 +144,7 @@ export default function AdditionalSupplyManagement() {
           <>
             <Button
               onClick={() => changePage(1)}
-              variant={currentPage === 1 ? "default" : "outline"}
+              variant={currentPage === 1 ? 'default' : 'outline'}
             >
               1
             </Button>
@@ -186,8 +186,8 @@ export default function AdditionalSupplyManagement() {
               variant={
                 currentPage ===
                 Math.ceil(filteredSupplies.length / suppliesPerPage)
-                  ? "default"
-                  : "outline"
+                  ? 'default'
+                  : 'outline'
               }
             >
               {Math.ceil(filteredSupplies.length / suppliesPerPage)}

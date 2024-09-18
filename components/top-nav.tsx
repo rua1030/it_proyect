@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Bell } from 'lucide-react'
+import { Bell } from 'lucide-react';
 
 export function TopNav() {
   return (
@@ -10,8 +10,12 @@ export function TopNav() {
           <Bell size={24} />
           <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
         </button>
-        <img src="/placeholder.svg?height=32&width=32" alt="User Avatar" className="h-8 w-8 rounded-full" />
+        <img
+          src="/placeholder.svg?height=32&width=32"
+          alt="User Avatar"
+          className="h-8 w-8 rounded-full"
+        />
       </div>
     </nav>
-  )
+  );
 }
