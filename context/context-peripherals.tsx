@@ -52,18 +52,18 @@ interface SupplyContextProps {
   addPeripheral: () => void;
   editPeripheral: (id: number) => void;
   deletePeripheral: () => void;
-  confirmDelete: (supply: any) => void;
+  confirmDelete: (supply: string) => void;
   confirmadd: () => void;
   changeStatus: (id: number, newStatus: string) => void;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   deleteModal: boolean;
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
-  peripheralToDelete: any;
-  setPeripheralToDelete: React.Dispatch<React.SetStateAction<any>>;
+  peripheralToDelete: string;
+  setPeripheralToDelete: React.Dispatch<React.SetStateAction<string>>;
   addModal: boolean;
   setaddModal: React.Dispatch<React.SetStateAction<boolean>>;
-  peripheralToadd: any;
-  setPeripheralToadd: React.Dispatch<React.SetStateAction<any>>;
+  peripheralToadd: string;
+  setPeripheralToadd: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SupplyContext = createContext<SupplyContextProps | undefined>(undefined);

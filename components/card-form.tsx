@@ -36,7 +36,6 @@ export default function CardForm() {
   } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
   };
 
   return (

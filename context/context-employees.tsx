@@ -168,7 +168,7 @@ interface SupplyContextProps {
   changeOS: (id: number, newOS: string) => void;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   employeeToDelete: Employee | null;
-  setEmployeeToDelete: React.Dispatch<React.SetStateAction<any>>;
+  setEmployeeToDelete: React.Dispatch<React.SetStateAction<string>>;
   deleteModal: boolean;
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   addModal: boolean;
@@ -184,11 +184,7 @@ interface SupplyContextProps {
 }
 const SupplyContext = createContext<SupplyContextProps | undefined>(undefined);
 
-export function SupplyProviderEmployees({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export function SupplyProviderEmployees({ children }: { children: ReactNode }) {
   const [status] = useState(employeeStatuses);
   const [statusSystems] = useState(operatingSystems);
   const [employees, setEmployees] = useState(initialEmployees);
@@ -209,7 +205,7 @@ export function SupplyProviderEmployees({
     console.log('Edit employee', id);
   };
 
-  const confirmDelete = (employee: any) => {
+  const confirmDelete = (employee: string) => {
     setEmployeeToDelete(employee);
     setDeleteModal(true);
   };

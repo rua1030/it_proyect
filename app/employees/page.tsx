@@ -49,7 +49,6 @@ export default function EmployeeManagement() {
     statusSystems,
     status,
     employeeToDelete,
-
     changePage,
     currentPage,
     currentEmployees,
@@ -70,7 +69,7 @@ export default function EmployeeManagement() {
         />
         <Button onClick={() => modalAdd()}>
           <Plus className="mr-2 h-4 w-4" />
-          Add Employee
+          Add Employeed
         </Button>
       </div>
       <Table>
@@ -94,6 +93,7 @@ export default function EmployeeManagement() {
               <TableCell>{employee.position}</TableCell>
               <TableCell>
                 <Select
+                  data-testid="os-select"
                   value={employee.operatingSystem}
                   onValueChange={(value) => changeOS(employee.id, value)}
                 >
@@ -145,6 +145,7 @@ export default function EmployeeManagement() {
                   variant="ghost"
                   size="sm"
                   onClick={() => confirmDelete(employee)}
+                  id="botton delete"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -224,9 +225,9 @@ export default function EmployeeManagement() {
           <DialogHeader>
             <DialogTitle>Confirm deletion</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete the employee 
+              Are you sure you want to delete the employee
               {employeeToDelete?.name}
-              ? This action cannot be undone".
+              ? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

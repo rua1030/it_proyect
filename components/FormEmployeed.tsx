@@ -119,7 +119,6 @@ const FormEmployeed: React.FC = () => {
           )}
         </div>
 
-        {/* Botón de enviar */}
         <button type="submit" className="btn btn-primary w-100">
           Submit
         </button>

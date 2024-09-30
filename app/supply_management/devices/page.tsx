@@ -37,13 +37,11 @@ export default function AdditionalSupplyManagement() {
     setFilter,
     deleteModal,
     setDeleteModal,
-    supplyToDelete,
     addModal,
     setAddModal,
     confirmDelete,
     deleteSupply,
     confirmAdd,
-    addSupply,
     changeStatus,
     editSupply,
   } = useSupplyContext();

@@ -54,7 +54,7 @@ export default function PeripheralManagement() {
 
   const filteredPeripherals = peripherals.filter(
     (peripheral) => peripheral.brand.toLowerCase().includes(filter.toLowerCase())
-    || peripheral.name.toLowerCase().includes(filter.toLowerCase()),
+      || peripheral.name.toLowerCase().includes(filter.toLowerCase()),
   );
 
   const indexOfLastSupply = currentPage * suppliesPerPage;
@@ -218,9 +218,9 @@ export default function PeripheralManagement() {
           <DialogHeader>
             <DialogTitle>Confirm deletion</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete the peripheral "
+              Are you sure you want to delete the peripheral
               {peripheralToDelete?.name}
-              "? This action cannot be undone.
+              ? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

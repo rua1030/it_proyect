@@ -362,6 +362,7 @@ const supplyStatuses = ['In use', 'In maintenance', 'Available'];
 
 // Define the shape of the context
 interface SupplyContextProps {
+  supplyStatuse: typeof supplyStatuses;
   supplies: typeof initialSupplies;
   filter: string;
   currentPage: number;
@@ -369,39 +370,33 @@ interface SupplyContextProps {
   addSupply: () => void;
   editSupply: (id: number) => void;
   deleteSupply: () => void;
-  confirmDelete: (supply: any) => void;
+  confirmDelete: (supply: string) => void;
   confirmAdd: () => void;
   changeStatus: (id: number, newStatus: string) => void;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   deleteModal: boolean;
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
-  supplyToDelete: any;
-  setSupplyToDelete: React.Dispatch<React.SetStateAction<any>>;
+  supplyToDelete: string;
+  setSupplyToDelete: React.Dispatch<React.SetStateAction<string>>;
   addModal: boolean;
   setAddModal: React.Dispatch<React.SetStateAction<boolean>>;
-  supplyToAdd: any;
-  setSupplyToAdd: React.Dispatch<React.SetStateAction<any>>;
+  supplyToAdd: string;
+  setSupplyToAdd: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SupplyContext = createContext<SupplyContextProps | undefined>(undefined);
 
-export function SupplyProviderDevices({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export function SupplyProviderDevices({ children }: { children: ReactNode }) {
+  const [supplyStatuse] = useState(supplyStatuses);
   const [supplies, setSupplies] = useState(initialSupplies);
   const [filter, setFilter] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const [suppliesPerPage] = useState(5);
   const [deleteModal, setDeleteModal] = useState(false);
   const [supplyToDelete, setSupplyToDelete] = useState(null);
   const [addModal, setAddModal] = useState(false);
   const [supplyToAdd, setSupplyToAdd] = useState(null);
 
-  // Filter supplies
-
-  // Simulate adding a supply
   const addSupply = () => {
     console.log('Add supply');
   };
@@ -412,7 +407,7 @@ export function SupplyProviderDevices({
   };
 
   // Open confirmation modal for deletion
-  const confirmDelete = (supply: any) => {
+  const confirmDelete = (supply:string) => {
     setSupplyToDelete(supply);
     setDeleteModal(true);
   };
@@ -440,6 +435,7 @@ export function SupplyProviderDevices({
   return (
     <SupplyContext.Provider
       value={{
+        supplyStatuse,
         supplies,
         filter,
         currentPage,

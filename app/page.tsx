@@ -14,12 +14,13 @@ import {
 } from '@/components/ui/card';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
-export default function LoginWithImage() {
+export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   return (
+    // quitar el scrooll
     <div className="flex items-center justify-center min-h-screen bg-gray-400">
       <div
         className="flex w-full max-w-xl bg-white rounded-lg overflow-hidden"
@@ -39,7 +40,7 @@ export default function LoginWithImage() {
         <Card className="w-full md:w-1/2 border-none shadow-none">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">
-              Log in
+              Access to
             </CardTitle>
             <CardDescription className="text-center">
               Enter your credentials to access it Management

@@ -44,7 +44,6 @@ export default function SupplyManagement() {
     confirmDelete,
     deleteSupply,
     confirmadd,
-    addSupply,
     changeStatus,
     editSupply,
   } = useSupplyContext();
@@ -214,9 +213,9 @@ export default function SupplyManagement() {
           <DialogHeader>
             <DialogTitle>Confirm deletion</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete the supply with serial "
+              Are you sure you want to delete the supply with serial
               {supplyToDelete?.serial}
-              "? This action cannot be undone.
+              ? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
