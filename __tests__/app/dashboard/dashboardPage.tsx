@@ -11,10 +11,18 @@ describe('Dashboard Page', () => {
     expect(screen.getByText('Inventory Usage')).toBeInTheDocument();
     expect(screen.getByText('left the company')).toBeInTheDocument();
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
-    expect(screen.getByText('Access the most common tasks.')).toBeInTheDocument();
-    expect(screen.getByText('Overview of current inventory levels.')).toBeInTheDocument();
-    expect(screen.getByText('Employees who recently joined the company.')).toBeInTheDocument();
-    expect(screen.getByText('Employees who are leaving the company.')).toBeInTheDocument();
+    expect(
+      screen.getByText('Access the most common tasks.'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Overview of current inventory levels.'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Employees who recently joined the company.'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Employees who are leaving the company.'),
+    ).toBeInTheDocument();
   });
 
   it('should render the breadcrumb with the correct link', () => {

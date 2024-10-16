@@ -59,7 +59,7 @@ export default function EmployeeManagement() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Employee Management</h1>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 ">
         <Input
           type="text"
           placeholder="Search by name, email, or ID number..."
@@ -67,7 +67,7 @@ export default function EmployeeManagement() {
           onChange={(e) => setFilter(e.target.value)}
           className="max-w-sm"
         />
-        <Button onClick={() => modalAdd()}>
+        <Button onClick={() => modalAdd()} asChild={false}>
           <Plus className="mr-2 h-4 w-4" />
           Add Employeed
         </Button>
@@ -90,7 +90,7 @@ export default function EmployeeManagement() {
               <TableCell>{employee.name}</TableCell>
               <TableCell>{employee.email}</TableCell>
               <TableCell>{employee.idNumber}</TableCell>
-              <TableCell>{employee.position}</TableCell>
+              <TableCell>{employee.jobTitle}</TableCell>
               <TableCell>
                 <Select
                   data-testid="os-select"
@@ -130,23 +130,20 @@ export default function EmployeeManagement() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => editEmployee(employee.id)}
-                >
+                  onClick={() => editEmployee(employee.id)} asChild={false} >
                   <Edit className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => editEmployee(employee.id)}
-                >
+                  onClick={() => editEmployee(employee.id)} asChild={false}>
                   <Info className="h-4 w-4" />
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => confirmDelete(employee)}
-                  id="botton delete"
-                >
+                  id="botton delete" asChild={false}>
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </TableCell>
@@ -157,32 +154,30 @@ export default function EmployeeManagement() {
       <div className="flex justify-center mt-4">
         <Button
           onClick={() => changePage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
+          disabled={currentPage === 1} asChild={false}        >
           Previous
         </Button>
         {currentPage > 2 && (
           <>
             <Button
               onClick={() => changePage(1)}
-              variant={currentPage === 1 ? 'default' : 'outline'}
-            >
+              variant={currentPage === 1 ? 'default' : 'outline'} asChild={false}            >
               1
             </Button>
             {currentPage > 3 && <span className="mx-1">...</span>}
           </>
         )}
         {currentPage > 1 && (
-          <Button onClick={() => changePage(currentPage - 1)} variant="outline">
+          <Button onClick={() => changePage(currentPage - 1)} variant="outline" asChild={false}>
             {currentPage - 1}
           </Button>
         )}
-        <Button variant="default" className="mx-1">
+        <Button variant="default" className="mx-1" asChild={false}>
           {currentPage}
         </Button>
         {currentPage
           < Math.ceil(filteredEmployees.length / employeesPerPage) && (
-          <Button onClick={() => changePage(currentPage + 1)} variant="outline">
+          <Button onClick={() => changePage(currentPage + 1)} variant="outline" asChild={false}>
             {currentPage + 1}
           </Button>
         )}
@@ -195,15 +190,12 @@ export default function EmployeeManagement() {
             )}
             <Button
               onClick={() => changePage(
-                Math.ceil(filteredEmployees.length / employeesPerPage),
+                Math.ceil(filteredEmployees.length / employeesPerPage)
               )}
-              variant={
-                currentPage
+              variant={currentPage
                 === Math.ceil(filteredEmployees.length / employeesPerPage)
-                  ? 'default'
-                  : 'outline'
-              }
-            >
+                ? 'default'
+                : 'outline'} asChild={false}            >
               {Math.ceil(filteredEmployees.length / employeesPerPage)}
             </Button>
           </>
@@ -211,12 +203,9 @@ export default function EmployeeManagement() {
 
         <Button
           onClick={() => changePage(currentPage + 1)}
-          disabled={
-            currentPage
-            === Math.ceil(filteredEmployees.length / employeesPerPage)
-          }
-          className="ml-2"
-        >
+          disabled={currentPage
+            === Math.ceil(filteredEmployees.length / employeesPerPage)}
+          className="ml-2" asChild={false}        >
           Next
         </Button>
       </div>
@@ -231,10 +220,10 @@ export default function EmployeeManagement() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDeleteModal(false)}>
+            <Button variant="outline" onClick={() => setDeleteModal(false)} asChild={false}>
               Cancel
             </Button>
-            <Button variant="destructive" onClick={deleteEmployee}>
+            <Button variant="destructive" onClick={deleteEmployee} asChild={false}>
               Delete
             </Button>
           </DialogFooter>

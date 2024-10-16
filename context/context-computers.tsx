@@ -1,6 +1,5 @@
 'use client';
 
-import { strict } from 'assert';
 import React, {
   createContext, useState, useContext, ReactNode,
 } from 'react';
@@ -49,7 +48,7 @@ interface SupplyContextProps {
   addSupply: () => void;
   editSupply: (id: number) => void;
   deleteSupply: () => void;
-  confirmDelete: (supply:string) => void;
+  confirmDelete: (supply: string) => void;
   confirmadd: () => void;
   changeStatus: (id: number, newStatus: string) => void;
   setFilter: React.Dispatch<React.SetStateAction<string>>;

@@ -42,7 +42,9 @@ describe('EmployeeManagement', () => {
 
   it('updates filter on input change', () => {
     setup();
-    const input = screen.getByPlaceholderText('Search by name, email, or ID number...');
+    const input = screen.getByPlaceholderText(
+      'Search by name, email, or ID number...',
+    );
     fireEvent.change(input, { target: { value: 'jhon' } });
     expect(input).toHaveValue('jhon');
   });

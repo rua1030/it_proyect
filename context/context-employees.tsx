@@ -2,172 +2,97 @@
 
 import React, {
   createContext, useState, useContext, ReactNode,
+  useEffect,
 } from 'react';
+import { EmployeesService } from '@/services/employeesService';
+import { Employees } from '@/models/employees';
 
-interface Employee {
-  id: number;
-  name: string;
-  email: string;
-  idNumber: string;
-  position: string;
-  operatingSystem: string;
-  status: string;
-}
-const initialEmployees: Employee[] = [
-  {
-    id: 1,
-    name: 'John Doe',
-    email: 'john@example.com',
-    idNumber: '1234567890',
-    position: 'Developer',
-    operatingSystem: 'Windows',
-    status: 'Onboarding',
-  },
-  {
-    id: 2,
-    name: 'Jane Smith',
-    email: 'jane@example.com',
-    idNumber: '0987654321',
-    position: 'Designer',
-    operatingSystem: 'macOS',
-    status: 'Active',
-  },
-  {
-    id: 3,
-    name: 'Bob Johnson',
-    email: 'bob@example.com',
-    idNumber: '2345678901',
-    position: 'Manager',
-    operatingSystem: 'Linux',
-    status: 'Offboarding',
-  },
-  {
-    id: 4,
-    name: 'Alice Brown',
-    email: 'alice@example.com',
-    idNumber: '3456789012',
-    position: 'HR Specialist',
-    operatingSystem: 'Windows',
-    status: 'Active',
-  },
-  {
-    id: 5,
-    name: 'Charlie Wilson',
-    email: 'charlie@example.com',
-    idNumber: '4567890123',
-    position: 'Tester',
-    operatingSystem: 'macOS',
-    status: 'Onboarding',
-  },
-  {
-    id: 6,
-    name: 'John Doe 2',
-    email: 'john@example.com',
-    idNumber: '1234567890',
-    position: 'Developer',
-    operatingSystem: 'Windows',
-    status: 'Onboarding',
-  },
-  {
-    id: 7,
-    name: 'Jane Smith 2',
-    email: 'jane@example.com',
-    idNumber: '0987654321',
-    position: 'Designer',
-    operatingSystem: 'macOS',
-    status: 'Active',
-  },
-  {
-    id: 8,
-    name: 'Bob Johnson 2',
-    email: 'bob@example.com',
-    idNumber: '2345678901',
-    position: 'Manager',
-    operatingSystem: 'Linux',
-    status: 'Offboarding',
-  },
-  {
-    id: 9,
-    name: 'Alice Brown 2',
-    email: 'alice@example.com',
-    idNumber: '3456789012',
-    position: 'HR Specialist',
-    operatingSystem: 'Windows',
-    status: 'Active',
-  },
-  {
-    id: 10,
-    name: 'Charlie Wilson 2',
-    email: 'charlie@example.com',
-    idNumber: '4567890123',
-    position: 'Tester',
-    operatingSystem: 'macOS',
-    status: 'Onboarding',
-  },
-  {
-    id: 11,
-    name: 'John Doe 3',
-    email: 'john@example.com',
-    idNumber: '1234567890',
-    position: 'Developer',
-    operatingSystem: 'Windows',
-    status: 'Onboarding',
-  },
-  {
-    id: 12,
-    name: 'Jane Smith 3',
-    email: 'jane@example.com',
-    idNumber: '0987654321',
-    position: 'Designer',
-    operatingSystem: 'macOS',
-    status: 'Active',
-  },
-  {
-    id: 13,
-    name: 'Bob Johnson 3',
-    email: 'bob@example.com',
-    idNumber: '2345678901',
-    position: 'Manager',
-    operatingSystem: 'Linux',
-    status: 'Offboarding',
-  },
-  {
-    id: 14,
-    name: 'Alice Brown 3',
-    email: 'alice@example.com',
-    idNumber: '3456789012',
-    position: 'HR Specialist',
-    operatingSystem: 'Windows',
-    status: 'Active',
-  },
-  {
-    id: 15,
-    name: 'Charlie Wilson 3',
-    email: 'charlie@example.com',
-    idNumber: '4567890123',
-    position: 'Tester',
-    operatingSystem: 'macOS',
-    status: 'Onboarding',
-  },
-];
+// interface Employee {
+//   id: number; // remover
+//   name: string;
+//   email: string;
+//   idNumber: string;
+//   jobTitle: string;
+//   operatingSystem: string;
+//   status: string;
+// }
 
-const employeeStatuses = ['Onboarding', 'Active', 'Offboarding'];
+// const initialEmployees: Employees[] = [
+//   {
+//     id: '1',
+//     name: 'John Doe',
+//     email: 'john@example.com',
+//     idNumber: '1234567890',
+//     jobTitle: 'Developer',
+//     operatingSystem: 'Windows',
+//     status: 'Onbording',
+//   },
+//   {
+//     id: '2',
+//     name: 'Jane Smith',
+//     email: 'jane@example.com',
+//     idNumber: '0987654321',
+//     jobTitle: 'Designer',
+//     operatingSystem: 'macOS',
+//     status: 'Active',
+//   },
+//   {
+//     id: '3',
+//     name: 'Bob Johnson',
+//     email: 'bob@example.com',
+//     idNumber: '2345678901',
+//     jobTitle: 'Manager',
+//     operatingSystem: 'Linux',
+//     status: 'Offbording',
+//   },
+//   {
+//     id: '4',
+//     name: 'Alice Brown',
+//     email: 'alice@example.com',
+//     idNumber: '3456789012',
+//     jobTitle: 'HR Specialist',
+//     operatingSystem: 'Windows',
+//     status: 'Active',
+//   },
+//   {
+//     id: '5',
+//     name: 'Charlie Wilson',
+//     email: 'charlie@example.com',
+//     idNumber: '4567890123',
+//     jobTitle: 'Tester',
+//     operatingSystem: 'macOS',
+//     status: 'Onbording',
+//   },
+//   {
+//     id: '6',
+//     name: 'John Doe 2',
+//     email: 'john@example.com',
+//     idNumber: '1234567890',
+//     jobTitle: 'Developer',
+//     operatingSystem: 'Windows',
+//     status: 'Onbording',
+//   },
+// ];
+
+const employeesService = new EmployeesService();
+
+const employeeStatuses = ['Onbording', 'Active', 'Offboarding'];
 const operatingSystems = ['Windows', 'macOS', 'Linux'];
 
 interface SupplyContextProps {
   statusSystems: typeof operatingSystems;
   status: typeof employeeStatuses;
-  employees: typeof initialEmployees;
+  employees: typeof EmployeesService;
   filter: string;
   addEmployee: () => void;
   editEmployee: (id: number) => void;
   deleteEmployee: () => void;
-  confirmDelete: (employee: Employee) => void;
+  confirmDelete: (employee: Employees) => void;
   modalAdd: () => void;
   changeStatus: (id: number, newStatus: string) => void;
   changeOS: (id: number, newOS: string) => void;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
-  employeeToDelete: Employee | null;
+  employeeToDelete: Employees | null;
   setEmployeeToDelete: React.Dispatch<React.SetStateAction<string>>;
   deleteModal: boolean;
   setDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -177,8 +102,8 @@ interface SupplyContextProps {
   changePage: (pageNumber: number) => void;
   currentPage: number;
 
-  currentEmployees: Employee[];
-  filteredEmployees: Employee[];
+  currentEmployees: Employees[];
+  filteredEmployees: Employees[];
 
   employeesPerPage: number;
 }
@@ -187,7 +112,7 @@ const SupplyContext = createContext<SupplyContextProps | undefined>(undefined);
 export function SupplyProviderEmployees({ children }: { children: ReactNode }) {
   const [status] = useState(employeeStatuses);
   const [statusSystems] = useState(operatingSystems);
-  const [employees, setEmployees] = useState(initialEmployees);
+  const [employees, setEmployees] = useState<Employees[]>([]);
   const [filter, setFilter] = useState('');
   const [deleteModal, setDeleteModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
@@ -196,7 +121,16 @@ export function SupplyProviderEmployees({ children }: { children: ReactNode }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [employeesPerPage] = useState(5);
 
-  // Simulate adding an employee
+  const fetchEmployees = async () => {
+    try {
+      const fetchedEmployees = await employeesService.getAllEmployees();
+      setEmployees(fetchedEmployees);
+    } catch (error) {
+      console.error('Error fetching Employees:', error);
+    }
+  }; 
+
+  // Simulate accion an employee
   const addEmployee = () => {
     console.log('Add employee');
   };
@@ -213,11 +147,11 @@ export function SupplyProviderEmployees({ children }: { children: ReactNode }) {
   const modalAdd = () => {
     setAddModal(true);
   };
-  const setAddEmployees = () => {
-    console.log('Add employee');
-    setAddEmployees();
-    setAddModal(false);
-  };
+  // const setAddEmployees = () => {
+  //   console.log('Add employee');
+  //   setAddEmployees();
+  //   setAddModal(false);
+  // };
 
   const deleteEmployee = () => {
     if (employeeToDelete) {
@@ -231,13 +165,15 @@ export function SupplyProviderEmployees({ children }: { children: ReactNode }) {
 
   const changeStatus = (id: number, newStatus: string) => {
     setEmployees(
-      employees.map((employee) => (employee.id === id ? { ...employee, status: newStatus } : employee)),
+      employees.map((employee) => (employee.id === id
+        ? { ...employee, status: newStatus } : employee)),
     );
   };
 
   const changeOS = (id: number, newOS: string) => {
     setEmployees(
-      employees.map((employee) => (employee.id === id ? { ...employee, operatingSystem: newOS } : employee)),
+      employees.map((employee) => (employee.id === id
+        ? { ...employee, operatingSystem: newOS } : employee)),
     );
   };
 
@@ -245,7 +181,7 @@ export function SupplyProviderEmployees({ children }: { children: ReactNode }) {
     (employee) => employee.name.toLowerCase().includes(filter.toLowerCase())
       || employee.email.toLowerCase().includes(filter.toLowerCase())
       || employee.idNumber.includes(filter)
-      || employee.position.toLowerCase().includes(filter.toLowerCase())
+      || employee.jobTitle.toLowerCase().includes(filter.toLowerCase())
       || employee.operatingSystem.toLowerCase().includes(filter.toLowerCase()),
   );
 
@@ -257,6 +193,10 @@ export function SupplyProviderEmployees({ children }: { children: ReactNode }) {
   );
 
   const changePage = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
 
   return (
     <SupplyContext.Provider
@@ -283,7 +223,6 @@ export function SupplyProviderEmployees({ children }: { children: ReactNode }) {
         currentPage,
         currentEmployees,
         filteredEmployees,
-
         employeesPerPage,
       }}
     >

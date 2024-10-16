@@ -23,7 +23,9 @@ describe('ComputersManagement', () => {
 
   it('renders all necessary fields', () => {
     setup();
-    expect(screen.getByText('Supply Management / Computers')).toBeInTheDocument();
+    expect(
+      screen.getByText('Supply Management / Laptops'),
+    ).toBeInTheDocument();
     expect(screen.getByText('Brand')).toBeInTheDocument();
     expect(screen.getByText('Serial')).toBeInTheDocument();
     expect(screen.getByText('Status')).toBeInTheDocument();
@@ -35,23 +37,23 @@ describe('ComputersManagement', () => {
 
   it('renders Computers Management title', () => {
     setup();
-    expect(screen.getByText('Supply Management / Computers')).toBeInTheDocument();
+    expect(
+      screen.getByText('Supply Management / Laptops'),
+    ).toBeInTheDocument();
   });
 
   it('updates filter on input change', () => {
     setup();
-    const input = screen.getByPlaceholderText(
-      'Search by brand or serial...',
-    );
+    const input = screen.getByPlaceholderText('Search by brand or serial...');
     fireEvent.change(input, { target: { value: 'Dell' } });
     expect(input).toHaveValue('Dell');
   });
 
   it('opens add computer modal on button click', () => {
     setup();
-    const addButton = screen.getByText('Add Computers');
+    const addButton = screen.getByText('Add Laptops');
     fireEvent.click(addButton);
-    expect(screen.getByText('Add Computers')).toBeInTheDocument();
+    expect(screen.getByText('add computer')).toBeInTheDocument();
   });
 
   it('changes page when pagination button is clicked', () => {

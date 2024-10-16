@@ -1,0 +1,92 @@
+.titulo {
+    font-size: 50px;
+    color: white; /* Color del título */
+    text-align: center; /* Centrar el título */
+    margin-bottom: 20px; /* Espaciado inferior */
+    margin-top: 29%;
+  }
+  
+  .text {
+    color: white;
+    text-align: center;
+    margin-top: 1%; /* Ajusta según sea necesario */
+    margin-bottom: 40px; /* Espaciado entre el texto y el formulario */
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre campos del formulario */
+  }
+  
+  .formGroup {
+    margin-bottom: 15px; /* Espaciado entre grupos de formulario */
+  }
+  
+  .label {
+    font-weight: bold; /* Etiquetas más visibles */
+    color: white; /* Color de las etiquetas */
+    font-size: 18px; /* Cambia el tamaño de la letra aquí */
+  }
+  
+  .input {
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Borde gris claro y semi-transparente */
+    padding: 10px; /* Espaciado interno */
+    width: 100%; /* Ocupa todo el ancho */
+    font-size: 16px; /* Cambia el tamaño de la letra aquí */
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo blanco semi-transparente */
+    color: white; /* Color del texto */
+  }
+  
+  .input:focus {
+    border-color: #57B8C6; /* Color del borde al enfocar */
+    outline: none; /* Sin contorno al enfocar */
+  }
+  
+  .btn {
+    width: 100%; /* Botón ocupa todo el ancho */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px;
+    background-color: #57B8C6; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor tipo puntero */
+    font-size: 16px; /* Cambia el tamaño de la letra aquí */
+  }
+  
+  .forgotPassword {
+    text-align: center; /* Centrar el texto */
+    margin: 10px 0; /* Margen superior e inferior */
+    font-size: 14px; /* Cambia el tamaño de la letra aquí */
+    color: white; /* Color del texto */
+  }
+  
+  .socialLogin {
+    text-align: center; /* Centrar el texto */
+    margin-top: 20px; /* Margen superior */
+  }
+  
+  .socialButtons {
+    padding-top: 5%;
+    display: flex;
+    justify-content: center; /* Centrar botones sociales */
+    gap: 10px; /* Espaciado entre botones */
+  }
+  
+  .socialBtn {
+    width: 16%;
+    height: 16%;
+    color: #000; /* Texto negro */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 15px; /* Espaciado interno */
+    cursor: pointer; /* Cursor tipo puntero */
+    font-size: 16px; /* Cambia el tamaño de la letra aquí */
+    
+  }
+  .contentForm
+  {
+    padding-right:20%;
+  }
+  

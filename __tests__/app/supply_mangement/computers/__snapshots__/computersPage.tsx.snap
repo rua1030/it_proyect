@@ -8,7 +8,7 @@ exports[`ComputersManagement matches snapshot 1`] = `
     <h1
       class="text-2xl font-bold mb-4"
     >
-      Supply Management / Computers
+      Supply Management / Laptops
     </h1>
     <div
       class="flex justify-between items-center mb-4"
@@ -41,7 +41,7 @@ exports[`ComputersManagement matches snapshot 1`] = `
             d="M12 5v14"
           />
         </svg>
-         Add Computers
+         Add Laptops
       </button>
     </div>
     <div

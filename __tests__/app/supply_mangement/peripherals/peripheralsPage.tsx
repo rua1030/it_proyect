@@ -23,7 +23,9 @@ describe('DevicesManagement', () => {
 
   it('renders all necessary fields', () => {
     setup();
-    expect(screen.getByText('Supply Management / Peripheral')).toBeInTheDocument();
+    expect(
+      screen.getByText('Supply Management / Peripheral'),
+    ).toBeInTheDocument();
     expect(screen.getByText('Brand')).toBeInTheDocument();
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(screen.getByText('Quantity')).toBeInTheDocument();
@@ -35,14 +37,14 @@ describe('DevicesManagement', () => {
 
   it('renders Devices Management title', () => {
     setup();
-    expect(screen.getByText('Supply Management / Peripheral')).toBeInTheDocument();
+    expect(
+      screen.getByText('Supply Management / Peripheral'),
+    ).toBeInTheDocument();
   });
 
   it('updates filter on input change', () => {
     setup();
-    const input = screen.getByPlaceholderText(
-      'Search by brand or name...',
-    );
+    const input = screen.getByPlaceholderText('Search by brand or name...');
     fireEvent.change(input, { target: { value: 'Logitech' } });
     expect(input).toHaveValue('Logitech');
   });

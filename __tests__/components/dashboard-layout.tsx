@@ -18,8 +18,8 @@ describe('DashboardLayout', () => {
 
     const dashboardLink = screen.getByRole('link', { name: /dashboard/i });
     const employeesLink = screen.getByRole('link', { name: /employees/i });
-    const computersLink = screen.getByRole('link', { name: /computers/i });
-    const devicesLink = screen.getByRole('link', { name: /devices/i });
+    const computersLink = screen.getByRole('link', { name: /Laptops/i });
+    const devicesLink = screen.getByRole('link', { name: /Displays/i });
     const peripheralsLink = screen.getByRole('link', { name: /peripherals/i });
     const settingsLink = screen.getByRole('link', { name: /settings/i });
     const logoutLink = screen.getByRole('link', { name: /logout/i });

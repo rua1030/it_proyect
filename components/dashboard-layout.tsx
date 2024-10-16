@@ -47,14 +47,14 @@ export default function DashboardLayout() {
               className="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 rounded p-2"
             >
               <Monitor className="h-5 w-5" />
-              <span>Computers</span>
+              <span>Laptops</span>
             </Link>
             <Link
               href="/supply_management/devices"
               className="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 rounded p-2"
             >
               <Smartphone className="h-5 w-5" />
-              <span>Devices</span>
+              <span>Displays</span>
             </Link>
             <Link
               href="/supply_management/peripherals"

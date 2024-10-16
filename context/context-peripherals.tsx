@@ -116,7 +116,8 @@ export function SupplyProviderPeripherals({
   // Simulate status change
   const changeStatus = (id: number, newStatus: string) => {
     setPeripherals(
-      peripherals.map((peripheral) => (peripheral.id === id ? { ...peripheral, status: newStatus } : peripheral)),
+      peripherals.map((peripheral) => (peripheral.id === id
+        ? { ...peripheral, status: newStatus } : peripheral)),
     );
   };
   return (

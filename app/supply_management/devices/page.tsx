@@ -55,7 +55,6 @@ export default function AdditionalSupplyManagement() {
       || supply.type.toLowerCase().includes(filter.toLowerCase()),
   );
 
-  // Calculate indices for pagination
   const indexOfLastSupply = currentPage * suppliesPerPage;
   const indexOfFirstSupply = indexOfLastSupply - suppliesPerPage;
   const currentSupplies = filteredSupplies.slice(
@@ -63,7 +62,6 @@ export default function AdditionalSupplyManagement() {
     indexOfLastSupply,
   );
 
-  // Change page
   const changePage = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (

@@ -6,7 +6,9 @@ describe('Login Page', () => {
     render(<Login />);
 
     expect(screen.getByText('Access to')).toBeInTheDocument();
-    expect(screen.getByText('Enter your credentials to access it Management')).toBeInTheDocument();
+    expect(
+      screen.getByText('Enter your credentials to access it Management'),
+    ).toBeInTheDocument();
     expect(screen.getByLabelText('Email')).toBeInTheDocument();
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Log in/i })).toBeInTheDocument();

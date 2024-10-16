@@ -51,13 +51,11 @@ export default function SupplyManagement() {
   const [currentPage, setCurrentPage] = useState(1);
   const [suppliesPerPage] = useState(5);
 
-  // Filter supplies
   const filteredSupplies = supplies.filter(
     (supply) => supply.brand.toLowerCase().includes(filter.toLowerCase())
       || supply.serial.toLowerCase().includes(filter.toLowerCase()),
   );
 
-  // Calculate indices for pagination
   const indexOfLastSupply = currentPage * suppliesPerPage;
   const indexOfFirstSupply = indexOfLastSupply - suppliesPerPage;
   const currentSupplies = filteredSupplies.slice(
@@ -65,12 +63,11 @@ export default function SupplyManagement() {
     indexOfLastSupply,
   );
 
-  // Change page
   const changePage = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Supply Management / Computers</h1>
+      <h1 className="text-2xl font-bold mb-4">Supply Management / Laptops</h1>
       <div className="flex justify-between items-center mb-4">
         <Input
           type="text"
@@ -82,7 +79,7 @@ export default function SupplyManagement() {
         <Button onClick={() => confirmadd()}>
           <Plus className="mr-2 h-4 w-4" />
           {' '}
-          Add Computers
+          Add Laptops
         </Button>
       </div>
       <Table>

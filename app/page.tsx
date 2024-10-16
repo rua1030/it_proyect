@@ -21,7 +21,7 @@ export default function Login() {
 
   return (
     // quitar el scrooll
-    <div className="flex items-center justify-center min-h-screen bg-gray-400">
+    <div className="flex items-center justify-center min-h-screen">
       <div
         className="flex w-full max-w-xl bg-white rounded-lg overflow-hidden"
         style={{

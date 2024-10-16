@@ -407,7 +407,7 @@ export function SupplyProviderDevices({ children }: { children: ReactNode }) {
   };
 
   // Open confirmation modal for deletion
-  const confirmDelete = (supply:string) => {
+  const confirmDelete = (supply: string) => {
     setSupplyToDelete(supply);
     setDeleteModal(true);
   };

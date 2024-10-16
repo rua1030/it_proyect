@@ -23,7 +23,9 @@ describe('DevicesManagement', () => {
 
   it('renders all necessary fields', () => {
     setup();
-    expect(screen.getByText('Supply Management / Displays')).toBeInTheDocument();
+    expect(
+      screen.getByText('Supply Management / Displays'),
+    ).toBeInTheDocument();
     expect(screen.getByText('Brand')).toBeInTheDocument();
     expect(screen.getByText('Serial')).toBeInTheDocument();
     expect(screen.getByText('Status')).toBeInTheDocument();
@@ -35,7 +37,9 @@ describe('DevicesManagement', () => {
 
   it('renders Devices Management title', () => {
     setup();
-    expect(screen.getByText('Supply Management / Displays')).toBeInTheDocument();
+    expect(
+      screen.getByText('Supply Management / Displays'),
+    ).toBeInTheDocument();
   });
 
   it('updates filter on input change', () => {

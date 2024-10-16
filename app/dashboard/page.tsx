@@ -73,7 +73,7 @@ export default function Dashboard() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-4">
+                <div className=" bg-gray-500 rounded-md grid gap-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex flex-col items-start gap-2 rounded-lg bg-muted p-4">
                       <div className="text-sm font-medium">Total Items</div>
